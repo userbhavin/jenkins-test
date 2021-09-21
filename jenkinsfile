@@ -2,7 +2,14 @@ node {
   stage('Init') {
     checkout scm
   }
-
+stage('Deploy1')  
+  withCredentials([azureServicePrincipal('principal-credentials-id')]) {
+        stage('Deploy1') {
+            sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
+            sh 'az account set -s $AZURE_SUBSCRIPTION_ID'
+            acrSettings = new JsonSlurper().parseText(
+                                            sh(script: "az vm create  --resource-group jenkinsvm-test --name myVM1 --image UbuntuLTS --admin-username azureuser --generate-ssh-keys", returnStdout: true))
+        }
 
 
   stage('Deploy') {
