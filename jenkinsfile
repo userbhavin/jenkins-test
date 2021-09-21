@@ -11,7 +11,7 @@ stage('Deploy1')
                                             sh(script: "az vm create  --resource-group jenkinsvm-test --name myVM1 --image UbuntuLTS --admin-username azureuser --generate-ssh-keys", returnStdout: true))
         }
 
-
+   }
   stage('Deploy') {
     withCredentials([azureServicePrincipal(credentialsId: env.AZURE_CRED_ID,
                                     subscriptionIdVariable: 'AZURE_SUBSCRIPTION_ID',
