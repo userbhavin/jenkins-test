@@ -3,13 +3,7 @@ node {
     checkout scm
   }
 
- # stage('Build') {
- #   sh '''
- #       cd complete
- #       mvn clean package
- #       mv target/*.war ROOT.war
- #   '''
- # }
+
 
   stage('Deploy') {
     withCredentials([azureServicePrincipal(credentialsId: env.AZURE_CRED_ID,
@@ -22,9 +16,5 @@ node {
       playbook: 'ansible-vm-deploy.yml'
     }
 
-   # azureWebAppPublish azureCredentialsId: env.AZURE_CRED_ID,
-   #                    resourceGroup: env.RES_GROUP, 
-   #                    appName: env.WEB_APP_NAME, 
-   #                    filePath: "**/ROOT.war"
   }
 }
