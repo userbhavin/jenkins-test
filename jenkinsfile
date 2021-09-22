@@ -13,7 +13,7 @@ node {
       ansiblePlaybook installation: 'ansible',
       playbook: 'ansible-vm-deploy.yml'
     }
-    
+  }
    stage('Deploy vm2') {
     withCredentials([azureServicePrincipal(credentialsId: env.AZURE_CRED_ID,
                                     subscriptionIdVariable: 'AZURE_SUBSCRIPTION_ID',
@@ -23,7 +23,7 @@ node {
                                       
       ansiblePlaybook installation: 'ansible',
       playbook: 'ansible-vm2-deploy.yml'
-    }
-
-  }
+                                    }
+     }
+  
 }
