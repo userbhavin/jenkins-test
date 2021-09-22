@@ -3,7 +3,7 @@ node {
     checkout scm
   }
 
-  stage('Deploy') {
+  stage('Deploy vm1') {
     withCredentials([azureServicePrincipal(credentialsId: env.AZURE_CRED_ID,
                                     subscriptionIdVariable: 'AZURE_SUBSCRIPTION_ID',
                                     clientIdVariable: 'AZURE_CLIENT_ID',
@@ -12,6 +12,17 @@ node {
                                       
       ansiblePlaybook installation: 'ansible',
       playbook: 'ansible-vm-deploy.yml'
+    }
+    
+   stage('Deploy vm2') {
+    withCredentials([azureServicePrincipal(credentialsId: env.AZURE_CRED_ID,
+                                    subscriptionIdVariable: 'AZURE_SUBSCRIPTION_ID',
+                                    clientIdVariable: 'AZURE_CLIENT_ID',
+                                    clientSecretVariable: 'AZURE_SECRET',
+                                    tenantIdVariable: 'AZURE_TENANT')]) {
+                                      
+      ansiblePlaybook installation: 'ansible',
+      playbook: 'ansible-vm2-deploy.yml'
     }
 
   }
