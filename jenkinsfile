@@ -1,7 +1,7 @@
 node {
   stage('Init') {
     checkout scm
-  }'
+  }
   
 
       stage('Deploy') {
