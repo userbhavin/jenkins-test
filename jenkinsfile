@@ -8,8 +8,7 @@ node {
         withCredentials([azureServicePrincipal('5a911ad5-2eb9-4f37-a80a-d1bca3d28e09')]) {
             sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
             sh 'az account set -s $AZURE_SUBSCRIPTION_ID'
-            ansiblePlaybook installation: 'ansible'
-            playbook: 'ansible-vm-deploy.yml'
+            sh 'ansible-playbook ansible-vm-deploy.yml'
                     
         }
       }
