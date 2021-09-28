@@ -5,7 +5,7 @@ node {
   
 
       stage('Deploy') {
-        withCredentials([azureServicePrincipal('bb611361-dffa-47f6-a12d-01a82cc2186e')]) {
+        withCredentials([azureServicePrincipal('5a911ad5-2eb9-4f37-a80a-d1bca3d28e09')]) {
             sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
             sh 'az account set -s $AZURE_SUBSCRIPTION_ID'
             sh 'az resource list'        
