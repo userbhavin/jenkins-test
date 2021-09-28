@@ -3,27 +3,12 @@ node {
     checkout scm
   }
 
-  stage('Deploy vm1') {
-    withCredentials([azureServicePrincipal(credentialsId: env.AZURE_CRED_ID,
-                                    subscriptionIdVariable: 'AZURE_SUBSCRIPTION_ID',
-                                    clientIdVariable: 'AZURE_CLIENT_ID',
-                                    clientSecretVariable: 'AZURE_SECRET',
-                                    tenantIdVariable: 'AZURE_TENANT')]) {
-                                      
-      ansiblePlaybook installation: 'ansible',
-      playbook: 'ansible-vm-deploy.yml'
-    }
-  }
-   stage('Deploy vm2') {
-    withCredentials([azureServicePrincipal(credentialsId: env.AZURE_CRED_ID,
-                                    subscriptionIdVariable: 'AZURE_SUBSCRIPTION_ID',
-                                    clientIdVariable: 'AZURE_CLIENT_ID',
-                                    clientSecretVariable: 'AZURE_SECRET',
-                                    tenantIdVariable: 'AZURE_TENANT')]) {
-                                      
-      ansiblePlaybook installation: 'ansible',
-      playbook: 'ansible-vm2-deploy.yml'
-                                    }
-     }
-  
+      stage('Deploy') {
+        withCredentials([azureServicePrincipal('bb611361-dffa-47f6-a12d-01a82cc2186e')]) {
+            sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
+            sh 'az account set -s $AZURE_SUBSCRIPTION_ID'
+            sh 'az resource list'        
+                    
+        }
+      }
 }
