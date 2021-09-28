@@ -37,14 +37,6 @@
           access: Allow
           priority: 1001
           direction: Inbound
-  - name: Create virtual network interface card
-    azure_rm_networkinterface:
-      resource_group: ansible-test-rg-vm
-      name: myNIC
-      virtual_network: myVnet
-      subnet: mySubnet
-      public_ip_name: myPublicIP
-      security_group: myNetworkSecurityGroup
   - name: Create VM
     azure_rm_virtualmachine:
       resource_group: ansible-test-rg-vm
