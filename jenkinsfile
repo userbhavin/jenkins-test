@@ -4,12 +4,15 @@ node {
   }
   
 
-      stage('Deploy') {
-        withCredentials([azureServicePrincipal('5a911ad5-2eb9-4f37-a80a-d1bca3d28e09')]) {
-            sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
-            sh 'az account set -s $AZURE_SUBSCRIPTION_ID'
-            sh 'ansible-playbook ansible-vm-deploy.yml --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
-                    
-        }
-      }
+       stage('Deploy vm1') {
+    withCredentials([azureServicePrincipal(credentialsId: env.AZURE_CRED_ID,
+                                    subscriptionIdVariable: 'AZURE_SUBSCRIPTION_ID',
+                                    clientIdVariable: 'AZURE_CLIENT_ID',
+                                    clientSecretVariable: 'AZURE_SECRET',
+                                    tenantIdVariable: 'AZURE_TENANT')]) {
+                                      
+      ansiblePlaybook installation: 'ansible',
+      playbook: 'ansible-vm-deploy.yml'
+    }
+  }
 }
