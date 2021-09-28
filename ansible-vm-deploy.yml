@@ -4,7 +4,7 @@
   tasks:
   - name: Create resource group to hold VM
     azure_rm_resourcegroup:
-      name: ansible-test-rg-vm
+      name: ansible-test-vm
       location: eastus
   - name: Create virtual network
     azure_rm_virtualnetwork:
