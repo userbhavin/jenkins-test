@@ -39,13 +39,13 @@
           direction: Inbound
       
   - name: Create NIC
-  azure.azcollection.azure_rm_networkinterface:
-    resource_group: ansible-test-rg-vm
-    name: testnic001
-    virtual_network: myVnet
-    subnet: mySubnet
-    public_ip_name: publicip001
-    security_group: secgroup001
+    azure.azcollection.azure_rm_networkinterface:
+      resource_group: ansible-test-rg-vm
+      name: testnic001
+      virtual_network: myVnet
+      subnet: mySubnet
+      public_ip_name: publicip001
+      security_group: secgroup001
     
   - name: Create VM
     azure_rm_virtualmachine:
