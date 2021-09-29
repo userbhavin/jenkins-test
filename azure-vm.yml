@@ -3,14 +3,6 @@
   connection: local
 
 vars:
-# {
-#    "offer": "UbuntuServer",
-#    "publisher": "Canonical",
-#    "sku": "16.04-LTS",
-#    "urn": "Canonical:UbuntuServer:16.04-LTS:latest",
-#    "urnAlias": "UbuntuLTS",
-#    "version": "latest"
-#  },
    vm_offer: "UbuntuServer"
    vm_pub: "Canonical"
    vm_sku: "16.04-LTS"
