@@ -39,7 +39,7 @@
           direction: Inbound
       
   - name: Create NIC
-    azure.azcollection.azure_rm_networkinterface:
+    azure_rm_networkinterface:
       resource_group: ansible-test-rg-vm
       name: testnic001
       virtual_network: myVnet
