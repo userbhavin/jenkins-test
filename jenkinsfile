@@ -12,7 +12,7 @@ node {
                                     tenantIdVariable: 'AZURE_TENANT')]) {
                                       
       ansiblePlaybook installation: 'ansible',
-      playbook: 'ansible-vm-deploy.yml'
+      playbook: 'azure-vm.yml'
     }
   }
 }
