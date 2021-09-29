@@ -1,8 +1,8 @@
-– name: Create Azure VM
+- name: Create Azure VM
   hosts: localhost
   connection: local
 
-  vars:
+vars:
 # {
 #    "offer": "UbuntuServer",
 #    "publisher": "Canonical",
